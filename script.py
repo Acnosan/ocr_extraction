@@ -18,6 +18,7 @@ def is_valide(image_path):
         return False
 
 def images_checking(data_path,images_extensions,pdf_extensions):
+    valide_images = []
     for file_name in os.listdir(data_path):
         image_path = os.path.join(data_path,file_name)
         if is_valide(image_path):
@@ -38,7 +39,7 @@ def binarizing(image_path):
     return binarized
 
 def parallel_binarizing(valide_images):
-    with tqdm(total=len(valide_images), desc="Binarizing ...", ncols=70) as pbar:
+    with tqdm(total=len(valide_images), desc="Binarizing ...", ncols=120) as pbar:
         def process_one(image_path):
             result = binarizing(image_path)
             pbar.update(1)
@@ -64,7 +65,7 @@ if show:
 """
 
 def parallel_denoising(binarized_images):
-    with tqdm(total=len(binarized_images), desc="Denoising ....",colour='red') as pbar:
+    with tqdm(total=len(binarized_images), desc="Denoising ....",colour='red', ncols=120) as pbar:
         def process_one(image_path):
             result = median_filter(np.array(image_path),3)
             pbar.update(1)
