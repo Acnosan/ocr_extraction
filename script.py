@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 from scipy.ndimage import median_filter
 from tqdm import tqdm
 import concurrent.futures as CONC
+
 # ------------- 1. Chargement des documents -------------
 def is_valide(image_path):
     try:
